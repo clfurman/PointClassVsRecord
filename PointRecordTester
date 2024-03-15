@@ -1,0 +1,65 @@
+public class PointRecordTester {
+
+    public static void main(String[] args) {
+        PointRecord p1 = new PointRecord(3, 5);
+        PointRecord p2 = new PointRecord(5, 7);
+        PointRecord p3 = new PointRecord(5, 7);
+        Point p4 = new Point(3, 5);
+        Point p5 = new Point(5, 7);
+        Point p6 = new Point(5, 7);
+        System.out.println(p1.equals(p2));
+        System.out.println(p2 == p3);
+        System.out.println(p2.equals(p3));
+
+        System.out.println(p4.equals(p5));
+        System.out.println(p5 == p6);
+        System.out.println(p5.equals(p6));
+
+        System.out.println(p1.slope(p2));
+        System.out.println(p2.slope(p3));
+    }
+}
+
+record PointRecord(int x, int y) {
+
+    public double slope(PointRecord other) {
+        try {
+            return ((y - other.y) / (x - other.x));
+        } catch (Exception e) {
+            System.out.println("No Slope");
+        }
+        return -999999;
+    }
+}
+
+public class Point {
+
+    private final int x;
+    private final int y;
+
+    public Point(int myX, int myY) {
+        x = myX;
+        y = myY;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public String toString() {
+        return "Point[x=" + x + ", y=" + y + "]";
+    }
+
+    public double slope(Point other) {
+        try {
+            return ((y - other.getY()) / (x - other.getX()));
+        } catch (Exception e) {
+            System.out.println("No Slope");
+        }
+        return -999999;
+    }
+}
